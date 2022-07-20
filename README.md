@@ -1,5 +1,8 @@
 # project-1
-I am going to implement Resnet moel using transfer learning, finetuning the model to predict cats and dogs... then using ONX to convert the code to tflight...
+I am going to implement Resnet moel using transfer learning, finetuning the model to predict cats and dogs... then using ONX to convert the code to tflight... 
+
+the data i'm using is in this link: "https://www.kaggle.com/competitions/dogs-vs-cats/data"
+
 Awesome :)))
 
 
