@@ -1,4 +1,3 @@
-from re import sub
 import torchvision
 import os
 import glob
