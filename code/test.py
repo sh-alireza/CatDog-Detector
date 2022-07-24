@@ -1,5 +1,5 @@
 import torchvision
-import os
+# import os
 import glob
 # model = torchvision.models.resnet18(pretrained=True)
 # print(model)
