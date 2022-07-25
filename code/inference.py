@@ -1,5 +1,4 @@
 import torch, torchvision
-import torch.nn.functional as F
 import requests
 from PIL import Image
 from io import BytesIO
@@ -31,8 +30,11 @@ transforms = torchvision.transforms.Compose([
 ])
 
 def inference(path, model, device="cpu"):
-    resp = requests.get(path)
-    print("request sent")
+    try:
+        resp = requests.get(path, timeout=10)
+        print("request sent")
+    except:
+        return False
     
     with torch.no_grad():
         image = np.array(Image.open(BytesIO(resp.content)))
@@ -44,11 +46,12 @@ def inference(path, model, device="cpu"):
         return pred
 
 
-
 pred = inference(path, model)
-pred_idx = np.argmax(pred)
+if pred:
+    pred_idx = np.argmax(pred)
 
-pred_label = "cat" if pred_idx == 0 else "dog"
-
-print(f"Predicted: {pred_label}, Prob: {pred[0][pred_idx]*100}%")
-
+    pred_label = "cat" if pred_idx == 0 else "dog"
+    
+    print(f"Predicted: {pred_label}, Prob: {pred[0][pred_idx]*100}%")
+else:
+    print("can not get the url!!!")

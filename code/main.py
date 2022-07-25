@@ -1,16 +1,12 @@
 import torch, torchvision
 from torchvision.transforms import ToTensor, Resize
 from torchvision import transforms
-import os
-from PIL import Image
 from torch.utils.data import DataLoader
 from dataset import CatDogDataset
 import torch.nn as nn
-import matplotlib.pyplot as plt
 from torch import optim
 from tqdm import tqdm
 import copy
-import pdb
 
 # Constants
 
@@ -52,7 +48,6 @@ model.fc = nn.Sequential(*[
     nn.Linear(in_features=512, out_features=2),
     nn.Softmax(dim=1)
 ])
-
 
 # validation and train functions
 

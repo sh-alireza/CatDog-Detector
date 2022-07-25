@@ -1,6 +1,5 @@
 import streamlit as st
 import torch, torchvision
-import torch.nn.functional as F
 import requests
 from PIL import Image
 from io import BytesIO
@@ -25,7 +24,7 @@ model.fc = nn.Sequential(*[
     nn.Linear(in_features=512, out_features=2),
     nn.Softmax(dim=1)
 ])
-model.load_state_dict(torch.load('ResNet_CatDog.pth'))
+model.load_state_dict(torch.load('ResNet_CatDog_v2.pth'))
 model.eval()
 
 # get the data
@@ -40,8 +39,12 @@ transforms = torchvision.transforms.Compose([
 ])
 
 def inference(path, model, device="cpu"):
-    resp = requests.get(path)
-    print("request sent")
+    try:
+        resp = requests.get(path, timeout=10)
+        print("request sent")
+    except:
+        
+        return False
     
     with torch.no_grad():
         image = np.array(Image.open(BytesIO(resp.content)))
@@ -56,8 +59,11 @@ def inference(path, model, device="cpu"):
 if path != "":
 
     pred = inference(path, model)
-    pred_idx = np.argmax(pred)
+    if pred:
+        pred_idx = np.argmax(pred)
 
-    pred_label = "cat" if pred_idx == 0 else "dog"
-    st.image(path,width=100)
-    st.write(f"Predicted: {pred_label}, Prob: {pred[0][pred_idx]*100}%")
+        pred_label = "cat" if pred_idx == 0 else "dog"
+        st.image(path,width=100)
+        st.write(f"Predicted: {pred_label}, Prob: {pred[0][pred_idx]*100}%")
+    else:
+        st.write("can not get the url!!!")
