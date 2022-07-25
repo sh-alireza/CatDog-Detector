@@ -6,7 +6,7 @@ from torchvision.transforms import ToTensor, Resize
 import numpy as np
 import torch.nn as nn
 
-DEVICE = "cpu"
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 # model implementation
 

@@ -15,7 +15,7 @@ st.write("This is the passage?")
 st.write("[< Don't click this link > ](https://google.com)")
 
 
-DEVICE = "cpu"
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 # model implementation
 

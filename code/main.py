@@ -15,7 +15,7 @@ VAL_PATH = "/home/alireza/Deep/project-1/data/val"
 NUM_BATCH = 32
 EPOCHS = 5
 LEARNING_RATE = 1e-3
-DEVICE = "cpu"
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 # Transformers
 
