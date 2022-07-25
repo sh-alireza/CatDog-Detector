@@ -1,10 +1,9 @@
 # project-1
-I am going to implement Resnet moel using transfer learning, finetuning the model to predict cats and dogs... then using ONX to convert the code to tflight... 
+I am going to implement Resnet model using transfer learning, finetuning the model to predict cats and dogs... then using ONNX to convert the code to tflight... and at last stream it on  localhost using streamlit...
 
-the data i'm using is in this link: "https://www.kaggle.com/competitions/dogs-vs-cats/data"
+you can find the data i'm using in this mini project here: "https://www.kaggle.com/competitions/dogs-vs-cats/data"
 
 Awesome :)))
-
 
 
 ### To Do List:
