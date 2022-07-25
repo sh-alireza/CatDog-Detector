@@ -25,7 +25,7 @@ DEVICE = "cpu"
 
 transform = transforms.Compose([
     ToTensor(),
-    Resize((50,50))
+    Resize((500,500))
 ])
 
 # dataset & dataloader
@@ -48,7 +48,10 @@ for param in model.parameters():
 
 # finetune the last fully connected layer to prefered output (2)
 
-model.fc = nn.Linear(in_features=512, out_features=2)
+model.fc = nn.Sequential(*[
+    nn.Linear(in_features=512, out_features=2),
+    nn.Softmax(dim=1)
+])
 
 
 # validation and train functions
@@ -104,4 +107,4 @@ resnet = train()
 
 # save the best model
 
-torch.save(resnet.state_dict(), "ResNet_CatDog.pth")
+torch.save(resnet.state_dict(), "ResNet_CatDog_v2.pth")
