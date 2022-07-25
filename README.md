@@ -34,3 +34,5 @@ Awesome :)))
 12- convert to tflight
 
 13- compare tf-light and pytorch
+
+14- stream the project on localhost using streamlit
