@@ -27,26 +27,15 @@ model.fc = nn.Sequential(*[
 model.load_state_dict(torch.load('ResNet_CatDog_v2.pth'))
 model.eval()
 
-# get the data
-
-path = st.text_input("Link:")
-# resp = requests.get(url)
-
-
 transforms = torchvision.transforms.Compose([
     ToTensor(),
     Resize((500,500))
 ])
 
-def inference(path, model, device="cpu"):
-    try:
-        resp = requests.get(path, timeout=10)
-        print("request sent")
-    except:
-        return False
-    
+def inference(model, img, device="cpu"):
+
     with torch.no_grad():
-        image = np.array(Image.open(BytesIO(resp.content)))
+        image = np.array(Image.open(img))
         
         image = transforms(image)
         # image = np.expand_dims(image, 1)
@@ -55,15 +44,42 @@ def inference(path, model, device="cpu"):
         return pred
 
 
-if path != "":
 
-    pred = inference(path, model)
-    st.write(pred)
-    if torch.is_tensor(pred):
-        pred_idx = np.argmax(pred)
+# get the data
+with st.form("my_form"):
 
-        pred_label = "cat" if pred_idx == 0 else "dog"
-        st.image(path,width=100)
-        st.write(f"Predicted: {pred_label}, Prob: {pred[0][pred_idx]*100}%")
-    else:
-        st.write("can not get the url!!!")
+    path = st.text_input("Link:")
+    
+    submit = st.form_submit_button("Click")
+    if submit:
+
+        try:
+            resp = requests.get(path, timeout=10)
+            print("request sent")
+            img_link = BytesIO(resp.content)
+        except:
+            img_link = False
+
+        if path != "":
+            pred = inference(model, img_link)
+
+            if torch.is_tensor(pred):
+                pred_idx = np.argmax(pred)
+
+                pred_label = "cat" if pred_idx == 0 else "dog"
+                st.image(path,width=100)
+                st.write(f"Predicted: {pred_label}, Prob: {pred[0][pred_idx]*100}%")
+                st.balloons()
+            else:
+                st.write("can not get the url!!!")
+
+
+img_file = st.file_uploader("upload: ")
+
+if img_file:
+
+    pred = inference(model, img_file)
+    pred_idx = np.argmax(pred)
+    pred_label = "cat" if pred_idx == 0 else "dog"
+    st.image(img_file, width=100)
+    st.write(f"Predicted: {pred_label}, Prob: {pred[0][pred_idx]*100}%")
