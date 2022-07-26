@@ -43,7 +43,6 @@ def inference(path, model, device="cpu"):
         resp = requests.get(path, timeout=10)
         print("request sent")
     except:
-        
         return False
     
     with torch.no_grad():
@@ -59,7 +58,8 @@ def inference(path, model, device="cpu"):
 if path != "":
 
     pred = inference(path, model)
-    if pred:
+    st.write(pred)
+    if torch.is_tensor(pred):
         pred_idx = np.argmax(pred)
 
         pred_label = "cat" if pred_idx == 0 else "dog"
