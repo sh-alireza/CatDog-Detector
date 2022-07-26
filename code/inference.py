@@ -40,14 +40,14 @@ def inference(path, model, device="cpu"):
         image = np.array(Image.open(BytesIO(resp.content)))
         
         image = transforms(image)
-        # image = np.expand_dims(image, 1)
+        
         image = image.unsqueeze(0)
         pred = model(image.to(device))
         return pred
 
 
 pred = inference(path, model)
-if pred:
+if torch.is_tensor(pred):
     pred_idx = np.argmax(pred)
 
     pred_label = "cat" if pred_idx == 0 else "dog"
