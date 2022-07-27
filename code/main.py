@@ -10,8 +10,8 @@ import copy
 
 # Constants
 
-TRAIN_PATH = "/home/alireza/Deep/project-1/data/train"
-VAL_PATH = "/home/alireza/Deep/project-1/data/val"
+TRAIN_PATH = "../data/train"
+VAL_PATH = "../data/val"
 NUM_BATCH = 32
 EPOCHS = 5
 LEARNING_RATE = 1e-3

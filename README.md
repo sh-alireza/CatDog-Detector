@@ -24,7 +24,7 @@ Awesome :)))
 
 8- study about ONNX and the way it works
 
-9- implemetnation of ONNX
+9- implemetnation of ONNX 
 
 10- What is tflight
 
