@@ -27,12 +27,7 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 # model implementation
 
-model = torchvision.models.resnet18()
-model.fc = nn.Sequential(*[
-    nn.Linear(in_features=512, out_features=2),
-    nn.Softmax(dim=1)
-])
-model.load_state_dict(torch.load('ResNet_CatDog_v2.pth'))
+model = torch.jit.load("CatDogModel.pt")
 model.eval()
 
 transforms = torchvision.transforms.Compose([
