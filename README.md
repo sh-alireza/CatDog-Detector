@@ -27,3 +27,9 @@ Awesome :)))
 9- implemetnation of ONNX @
 
 10- stream the project using streamlit @
+
+### Stream:
+
+you can see the final result on ui_streamlit.py... run it using this line of code:
+
+streamlit run ui_streamlit.py
