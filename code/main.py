@@ -102,4 +102,8 @@ resnet = train()
 
 # save the best model
 
-torch.save(resnet.state_dict(), "ResNet_CatDog_v2.pth")
+# torch.save(resnet.state_dict(), "ResNet_CatDog_v2.pth")
+model_scripted = torch.jit.script(resnet) 
+model_scripted.save('CatDogModel.pt')
+
+

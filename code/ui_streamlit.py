@@ -5,7 +5,6 @@ from PIL import Image
 from io import BytesIO
 from torchvision.transforms import ToTensor, Resize
 import numpy as np
-import torch.nn as nn
 
 st.set_page_config(page_title="Page Title")
 st.write('''

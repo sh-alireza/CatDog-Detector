@@ -4,7 +4,6 @@ from PIL import Image
 from io import BytesIO
 from torchvision.transforms import ToTensor, Resize
 import numpy as np
-import torch.nn as nn
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -16,7 +15,6 @@ model.eval()
 # get the data
 
 path = str(input("insert the image url: "))
-# resp = requests.get(url)
 
 
 transforms = torchvision.transforms.Compose([
