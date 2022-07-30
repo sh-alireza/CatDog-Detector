@@ -32,4 +32,6 @@ Awesome :)))
 
 you can see the final result on ui_streamlit.py... run it using this line of code:
 
-streamlit run ui_streamlit.py
+> streamlit run ui_streamlit.py
+
+(no need to download the dataset)
