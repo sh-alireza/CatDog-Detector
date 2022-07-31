@@ -1,4 +1,4 @@
-# project-1
+# CatDog-Detector
 I am going to implement Resnet model using transfer learning, finetuning the model to predict cats and dogs... then convert the code to ONNX and test it again using onnxruntime... and at last stream it using streamlit...
 
 you can find the data i'm using in this mini project here: "https://www.kaggle.com/competitions/dogs-vs-cats/data"
